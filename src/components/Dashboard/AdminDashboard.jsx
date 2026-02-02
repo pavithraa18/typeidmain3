@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./dashboard.css";
 
 
-const AdminDashboard = ({ setPage, userId, role }) => {
+const AdminDashboard = ({ setPage, userId, role, onLogout }) => {
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
 	const [summary, setSummary] = useState(null);
@@ -78,6 +78,33 @@ const AdminDashboard = ({ setPage, userId, role }) => {
 								<p>Typing Profiles Collected</p>
 								<h3>{summary.total_profiles ?? "-"}</h3>
 							</div>
+
+							{/* Activity Log Table */}
+							<div className="log-container" style={{ marginTop: '20px' }}>
+								<h3>System Activity Logs</h3>
+								<table className="admin-table">
+									<thead>
+										<tr>
+											<th>Time</th>
+											<th>User ID</th>
+											<th>Method</th>
+											<th>Status</th>
+										</tr>
+									</thead>
+									<tbody>
+										{summary.activity_logs?.map((log, index) => (
+											<tr key={index}>
+												<td>{new Date(log.login_time).toLocaleString()}</td>
+												<td>{log.user_id}</td>
+												<td>{log.login_method}</td>
+												<td className={log.status === 'success' ? 'text-success' : 'text-danger'}>
+													{log.status}
+												</td>
+											</tr>
+										))}
+									</tbody>
+								</table>
+							</div>
 						</>
 					) : (
 						<>
@@ -95,7 +122,7 @@ const AdminDashboard = ({ setPage, userId, role }) => {
 				</>
 			)}
 
-			<button onClick={() => setPage("home")}>Logout</button>
+			<button onClick={onLogout || (() => setPage("home"))}>Logout</button>
 		</div>
 	);
 };

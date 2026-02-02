@@ -10,6 +10,13 @@ margin-bottom: 30px;
 }
 
 
+.dashboard-wrapper h3 {
+margin-top: 20px;
+margin-bottom: 15px;
+color: #333;
+}
+
+
 .card {
 background: white;
 padding: 20px;
@@ -21,6 +28,59 @@ box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 
 .card p {
 color: gray;
+}
+
+
+.log-container {
+background: white;
+padding: 20px;
+border-radius: 10px;
+box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+
+.admin-table {
+width: 100%;
+border-collapse: collapse;
+margin-top: 15px;
+}
+
+
+.admin-table thead {
+background: #f8f9fa;
+border-bottom: 2px solid #dee2e6;
+}
+
+
+.admin-table th {
+padding: 12px;
+text-align: left;
+font-weight: 600;
+color: #333;
+}
+
+
+.admin-table td {
+padding: 12px;
+border-bottom: 1px solid #dee2e6;
+color: #555;
+}
+
+
+.admin-table tbody tr:hover {
+background: #f8f9fa;
+}
+
+
+.text-success {
+color: #28a745;
+font-weight: 600;
+}
+
+
+.text-danger {
+color: #dc3545;
+font-weight: 600;
 }
 
 

@@ -13,6 +13,20 @@ const App = () => {
   const [userId, setUserId] = useState(null);
   const [role, setRole] = useState(null);
 
+  const handleLogout = () => {
+    // 1. Clear State
+    setUserId(null);
+    setRole(null);
+    setPage("home");
+
+    // 2. Clear Browser Storage
+    localStorage.removeItem("userId");
+    localStorage.removeItem("role");
+
+    // 3. Redirect to home/login
+    window.location.href = "/";
+  };
+
   return (
     <Router>
       <Navbar setPage={setPage} />
@@ -42,6 +56,7 @@ const App = () => {
               setPage={setPage}
               userId={userId}
               role={role}
+              onLogout={handleLogout}
             />
           }
         />
@@ -53,6 +68,7 @@ const App = () => {
               setPage={setPage}
               userId={userId}
               role={role}
+              onLogout={handleLogout}
             />
           }
         />

@@ -464,7 +464,13 @@ def dashboard_admin():
                 )
                 top = [dict(row) for row in cur.fetchall()]
 
-                return jsonify({'success': True, 'total_users': total_users, 'total_profiles': total_profiles, 'recent_users': recent, 'top_users': top}), 200
+                # Fetch activity logs from login_session table
+                cur = conn.execute(
+                    "SELECT login_time, user_id, status, login_method FROM login_session ORDER BY login_time DESC LIMIT 10"
+                )
+                activity_logs = [dict(row) for row in cur.fetchall()]
+
+                return jsonify({'success': True, 'total_users': total_users, 'total_profiles': total_profiles, 'recent_users': recent, 'top_users': top, 'activity_logs': activity_logs}), 200
 
             elif role in ['student', 'teacher']:
                 # Student/Teacher: return user-specific summary

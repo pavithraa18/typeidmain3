@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./dashboard.css";
 
 
-const UserDashboard = ({ setPage, userId, role }) => {
+const UserDashboard = ({ setPage, userId, role, onLogout }) => {
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
 	const [summary, setSummary] = useState(null);
@@ -98,7 +98,7 @@ const UserDashboard = ({ setPage, userId, role }) => {
 				</>
 			)}
 
-			<button onClick={() => setPage("home")}>Logout</button>
+			<button onClick={onLogout || (() => setPage("home"))}>Logout</button>
 		</div>
 	);
 };
